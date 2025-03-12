@@ -1,0 +1,20 @@
+services:
+    kali:
+        image: kalilinux/kali-rolling
+        container_name: kali
+        environment:
+            USERNAME: "root"
+            PASSWORD: "toor"
+            RAM_SIZE: "4G"
+            CPU_CORES: "4"
+        devices:
+            - /dev/kvm
+            - /dev/net/tun
+        cap_add:
+            - NET_ADMIN
+        ports:
+            - "2222:22"  # SSH access
+            - "8080:8080"  # Web server or other services
+        tty: true
+        stdin_open: true
+        restart: unless-stopped
